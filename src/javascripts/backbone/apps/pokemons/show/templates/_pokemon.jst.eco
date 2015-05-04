@@ -1,0 +1,5 @@
+<header> <%= @name %></header>
+<div>Number: <%= @id %></div>
+<div>Attack: <%= @attack %></div>
+<div>Deffense <%= @defense %></div>
+

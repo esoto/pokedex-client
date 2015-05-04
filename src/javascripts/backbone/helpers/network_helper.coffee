@@ -1,4 +1,4 @@
-@Asaper.module "Helpers", (Helpers, App, Backbone, Marionette, $, _) ->
+@Pokedex.module "Helpers", (Helpers, App, Backbone, Marionette, $, _) ->
 
   class Helpers.NetworkHelper
 

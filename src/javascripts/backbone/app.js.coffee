@@ -4,22 +4,24 @@
     apiKey: window.pokedexApiKey
 
   _sync = Backbone.sync
-  Backbone.sync = (method, model, options) ->
-    url = (if typeof(model.url) == "function" then model.url() else model.url)
-    model.url = url + "?API-KEY=#{App.apiKey}" if url.indexOf('API-KEY') == -1
-    _sync.call( this, method, model, options )
+  #Backbone.sync = (method, model, options) ->
+    #url = (if typeof(model.url) == "function" then model.url() else model.url)
+    #model.url = url + "?API-KEY=#{App.apiKey}" if url.indexOf('API-KEY') == -1
+    #_sync.call( this, method, model, options )
 
   App.addRegions
-    regionHeader:  "#header-region"
-    regionContent:  "#content-region"
-    regionDrawer:   "#drawers-region"
-    regionWelcome:  "#welcome-region"
-    regionDialog:   Marionette.Region.Dialog.extend el: "#dialog-region"
+    regionContent:  "#info-region"
+    regionImage:   "#image-region"
 
   App.apiRoute = window.pokedexDomain
 
-  App.bind "initialize:after", ->
+  App.redirect = ->
+    window.location.replace("http://localhost:9001/#!pokemons")
+
+  App.bind "initialize:before", ->
     console.log "Backbone was initialized!"
-    Backbone.history.start()
+    if !Backbone.history.started
+      Backbone.history.start({ pushstate: true })
 
   App
+

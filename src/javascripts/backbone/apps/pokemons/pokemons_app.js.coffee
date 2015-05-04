@@ -3,22 +3,22 @@
 
   class PokemonApp.Router extends Marionette.AppRouter
     appRoutes:
-      "pokemons" : "list"
+      "pokemons/" : "list"
       "pokemons/:id" : "show"
-      "*any" : "redirect"
+      "*any" : "list"
 
   API =
-    list: ->
+    list: ()->
       PokemonApp.List.Controller.list()
 
     redirect: ->
       App.redirect()
 
-    show: (id) ->
-      PokemonApp.Show.Controller.show id
+    show: (id, model) ->
+      PokemonApp.Show.Controller.show(id, model)
 
-  App.reqres.setHandler "new:message:view", (messagesCollection) ->
-    API.new messagesCollection
+  App.commands.setHandler "pokemon:app:show", (pokemon) ->
+    API.show(0, pokemon.model)
 
   App.addInitializer ->
     new PokemonApp.Router

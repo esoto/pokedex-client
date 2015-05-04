@@ -1,0 +1,3 @@
+<li class="pokemon fire-type">
+  <h3 class="name"><%= @name %></h3> - <span class="type"><%= @pokemon_type %></span>
+</li>

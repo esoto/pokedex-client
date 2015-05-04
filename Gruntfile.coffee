@@ -299,42 +299,6 @@ module.exports = (grunt) =>
         options: 
           livereload: true
 
-    aws: grunt.file.readJSON("grunt-aws.json")
-    aws_s3:
-      options:
-        accessKeyId: '<%= aws.key %>',
-        secretAccessKey: '<%= aws.secret %>',
-        region: 'us-east-1',
-        uploadConcurrency: 5,
-        downloadConcurrency: 5
-        params:
-          'ContentEncoding': 'gzip'
-      staging:
-        options:
-          bucket: '<%= aws.bucketStaging %>'
-        files: [
-          {dest: '/', action: 'delete'},
-          {expand: true, cwd: 'dist/', src: ['**'], dest: '.'},
-        ]
-      production:
-        options:
-          bucket: '<%= aws.bucketProduction %>'
-        files: [
-          {dest: '/', action: 'delete'},
-          {expand: true, cwd: 'dist/', src: ['**'], dest: '.'},
-        ]
-      backupStaging:
-        options:
-          bucket: '<%= aws.bucketStaging %>'
-        files:[
-          {dest: '/', cwd: 'rollback/staging/', action: 'download'}
-        ]
-      backupProduction:
-        options:
-          bucket: '<%= aws.bucketProduction %>'
-        files:[
-          {dest: '/', cwd: 'rollback/production/', action: 'download'}
-        ]
 
   grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-coffee"
@@ -344,7 +308,6 @@ module.exports = (grunt) =>
   grunt.loadNpmTasks "grunt-contrib-htmlmin"
   grunt.loadNpmTasks "grunt-coffeelint"
   grunt.loadNpmTasks "grunt-contrib-csslint"
-  grunt.loadNpmTasks "grunt-aws-s3"
   grunt.loadNpmTasks "grunt-contrib-connect"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-clean"

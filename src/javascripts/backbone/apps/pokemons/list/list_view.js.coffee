@@ -1,27 +1,27 @@
 @Pokedex.module "PokemonApp.List", (List, App, Backbone, Marionette, $, _) ->
 
   class List.Layout extends Marionette.Layout
-    template: "messages/list/templates/layout.jst"
+    template: "pokemons/list/templates/layout.jst"
     tagName: "span"
-    className: "message-app-layout"
+    className: "pokemon-app-layout"
     regions:
-      footerRegion:   "#chat-footer-region"
-      messagesRegion: "#chat-messages-region"
+      pokemonRegion: "#pokemon-list-region"
 
-  class List.Message extends Marionette.ItemView
+  class List.Pokemon extends Marionette.ItemView
     template: =>
-      subtype = if @model.isSystem() then "system" else @model.get('subtype')
-      "messages/list/templates/_#{subtype}_message.jst"
+      subtype = if @model.isFireType() then 'fire' else 'normal'
+      "pokemons/list/templates/_#{subtype}_pokemon.jst"
 
-    initialize: ->
-      @model.setOwner()
-      sender = @model.get('sender')
-      @listenTo(sender, "change:name", @render) if sender
+    events: ->
+      'click': 'displayPokemon'
 
-  class List.Messages extends Marionette.CollectionView
+    displayPokemon: ->
+      @trigger "show:pokemon:information", @model
+
+  class List.Pokemons extends Marionette.CollectionView
     tagName: "ul"
-    className: "chat-messages overthrow"
-    itemView: List.Message
+    className: "pokemon-list"
+    itemView: List.Pokemon
 
     collectionEvents: ->
       'add' : 'scroll'

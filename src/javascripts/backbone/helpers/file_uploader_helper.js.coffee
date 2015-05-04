@@ -1,4 +1,4 @@
-@Asaper.module "Helpers", (Helpers, App, Backbone, Marionette, $, _) ->
+@Pokedex.module "Helpers", (Helpers, App, Backbone, Marionette, $, _) ->
 
   class Helpers.FileUploaderHelper
 
@@ -45,7 +45,7 @@
 
       if @acceptedTypes[files[0].type] is true and @definer.formdata
         formData.append "content", files[0]
-        formData.append "member_token", window.Asaper.currentMemberToken
+        formData.append "member_token", window.Pokedex.currentMemberToken
         xhr = new XMLHttpRequest()
         xhr.onreadystatechange = ->
           if xhr.readyState == 1
@@ -66,7 +66,7 @@
             setTimeout( ->
               progressReporter.fadeOut("slow")
             , 2000)
-        route = window.Asaper.apiRoute + "/rooms/" + window.Asaper.currentRoomToken + "/messages?API-KEY=" + window.asaperApiKey
+        route = window.Pokedex.apiRoute + "/pokemons/" + window.Pokedex.currentRoomToken
         xhr.open "POST", route, true
         xhr.send formData
       else
