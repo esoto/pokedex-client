@@ -1,0 +1,94 @@
+/* Reset */
+@import '_reset';
+
+/* Font Import */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,700,300);
+@import '_icon_font';
+
+/* Imports */
+@import "colors";
+@import "buttons";
+@import "type";
+@import "mixins";
+
+@import "snap";
+@import "jquery-ui-custom";
+@import "breakpoints";
+@import "base-styles";
+
+@import "actions";
+@import "dialogs";
+@import "chat-input";
+@import "chat-room";
+@import "member-list";
+@import "messages";
+@import "welcome-screen";
+@import "jquery.ui.dialog_override";
+
+/* Overrides */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+html, body{
+  height: 100%;
+}
+
+.overthrow{
+  height: auto;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+#connection-status {
+  display: none;
+  background: #FD851C;
+  position: absolute;
+  top: 4px;
+  width: 310px;
+  height: 20px;
+  z-index: 200;
+  text-align: center;
+  padding: 8px;
+  border-radius: 7px;
+  color: #FFF;
+}
+
+@media (max-width: 958px) {
+  body {
+    @include defineBreakpoint("MOBILE");
+  }
+}
+
+@media (min-width: 959px) {
+  body {
+    @include defineBreakpoint("MASSIVE_SCREEN");
+  }
+  #group-disclosure-button { display: none; }
+  .snap-content { position: absolute; right: 246px; }
+  .snap-drawer { width: 246px; }
+  #members-header { width: 246px; }
+  #members-footer { width: 246px; }
+  .member-list { width: 246px; }
+  .member-item { width: 212px; }
+}
+
+/* Workaround: in landscape mode, IEMobile makes bottom toolbar overlap the page, so shorten the page by 75px to compensate */
+.iemobile .page { bottom: -6px; }
+@media screen and (orientation:landscape) { .iemobile .page { bottom: 75px; } }
+
