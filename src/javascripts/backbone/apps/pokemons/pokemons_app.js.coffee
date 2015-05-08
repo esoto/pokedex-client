@@ -17,8 +17,8 @@
     show: (id, model) ->
       PokemonApp.Show.Controller.show(id, model)
 
-  App.commands.setHandler "pokemon:app:show", (pokemon) ->
-    API.show(0, pokemon.model)
+  App.commands.setHandler "pokemon:app:show", (pokemon_view) ->
+    API.show(0, pokemon_view.model)
 
   App.addInitializer ->
     new PokemonApp.Router
