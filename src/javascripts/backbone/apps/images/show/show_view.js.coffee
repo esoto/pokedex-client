@@ -10,3 +10,12 @@
   class Show.DummyImage extends Marionette.ItemView
     template: "images/show/templates/_dummy_pokemon.jst"
 
+  class Show.PokemonImage extends Marionette.ItemView
+    template: "images/show/templates/_pokemon.jst"
+
+    serializeData: ->
+      {
+        "domain": App.apiRoute
+        "avatar_url": @options.avatar_url
+      }
+

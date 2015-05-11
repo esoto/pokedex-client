@@ -7,7 +7,8 @@
       layout = @getLayoutView()
       layout.on "show", =>
         pokemonView = @getPokemonView pokemon
-        App.execute "image:app:start"
+        console.log 'here'
+        App.execute "image:app:show:pokemon", pokemon.get('avatar_medium')
         layout.pokemonRegion.show pokemonView
 
       App.regionContent.show layout

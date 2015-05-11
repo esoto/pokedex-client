@@ -1,0 +1,1 @@
+<img src='<%= @domain %><%= @avatar_url %>' alt='dummy'/>
